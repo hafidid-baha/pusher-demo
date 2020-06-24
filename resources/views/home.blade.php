@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    <form>
+                    <form action="/Share" method="Post">
+                        @csrf
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Write Somthing To Share With Others</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
