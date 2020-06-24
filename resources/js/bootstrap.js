@@ -36,6 +36,19 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER
+    // forceTLS: true
+});
+
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher(process.env.MIX_PUSHER_APP_KEY, {
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER
+});
+
+var channel = pusher.subscribe('main-channel');
+channel.bind('share-event', function(data) {
+    alert(JSON.stringify(data));
 });
