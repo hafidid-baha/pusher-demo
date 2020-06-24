@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\shareEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,12 @@ Route::get('/', function () {
 
 Route::post('/Share', function (Request $request) {
     // dd($request->message);
+    $username = Auth::user()->name;
+    $message = "{$username}  : Said {$request->message}";
+    
+    // create and brodcast the event
+    event(new shareEvent($message));
+    
 });
 
 Auth::routes();
