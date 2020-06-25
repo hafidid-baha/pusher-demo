@@ -21,3 +21,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('main-channel', function ($user) {
     return auth()->check();
 });
+
+Broadcast::channel('online', function ($user) {
+    if (auth()->check()) {
+        return $user->toArray();
+    }
+});
