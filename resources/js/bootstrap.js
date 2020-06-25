@@ -52,3 +52,10 @@ var channel = pusher.subscribe('main-channel');
 channel.bind('share-event', function(data) {
     alert(JSON.stringify(data));
 });
+
+// listen to online channel
+window.Echo.join('online')
+            .here(users => console.log(users))
+            .joining(user => console.log("joined "+user))
+            .leaving(user => console.log("leaving "+user))
+            // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))
