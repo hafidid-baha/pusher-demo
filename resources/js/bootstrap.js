@@ -72,12 +72,20 @@ window.Echo.join('online')
             .joining(u => {
                 // get html elements
                 var liveUsers = document.querySelector("#online");
-                
+
                 // create new para element
                 var user = document.createElement("P");
                 // add the user name to the online list
                 user.appendChild(document.createTextNode(u.name));
                 liveUsers.appendChild(user);
             })
-            .leaving(user => console.log("leaving "+user))
+            .leaving(u => {
+                var parags = document.querySelectorAll("#online p");
+                parags.forEach(p => {
+                    if(p.textContent == u.name){
+                        //remove the user name from list
+                        p.parentNode.removeChild(p);
+                    }
+                });
+            })
             // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))
