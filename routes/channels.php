@@ -22,6 +22,8 @@ Broadcast::channel('main-channel', function ($user) {
     return auth()->check();
 });
 
+// listen for new joining users broadcat
+
 Broadcast::channel('online', function ($user) {
     if (auth()->check()) {
         return $user->toArray();
