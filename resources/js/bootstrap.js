@@ -69,6 +69,15 @@ window.Echo.join('online')
                     liveUsers.appendChild(user);
                 });
             })
-            .joining(user => console.log("joined "+user))
+            .joining(u => {
+                // get html elements
+                var liveUsers = document.querySelector("#online");
+                
+                // create new para element
+                var user = document.createElement("P");
+                // add the user name to the online list
+                user.appendChild(document.createTextNode(u.name));
+                liveUsers.appendChild(user);
+            })
             .leaving(user => console.log("leaving "+user))
             // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))

@@ -55797,8 +55797,14 @@ window.Echo.join('online').here(function (users) {
     user.appendChild(document.createTextNode(u.name));
     liveUsers.appendChild(user);
   });
-}).joining(function (user) {
-  return console.log("joined " + user);
+}).joining(function (u) {
+  // get html elements
+  var liveUsers = document.querySelector("#online"); // create new para element
+
+  var user = document.createElement("P"); // add the user name to the online list
+
+  user.appendChild(document.createTextNode(u.name));
+  liveUsers.appendChild(user);
 }).leaving(function (user) {
   return console.log("leaving " + user);
 }); // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))
