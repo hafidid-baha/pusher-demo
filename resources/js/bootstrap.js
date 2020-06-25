@@ -59,10 +59,11 @@ window.Echo.join('online')
             .here(users => {
                 // get html elements
                 var liveUsers = document.querySelector("#online");
-                // create new para element
-                var user = document.createElement("P");
+                
                 
                 users.forEach(u => {
+                    // create new para element
+                    var user = document.createElement("P");
                     // add the user name to the online list
                     user.appendChild(document.createTextNode(u.name));
                     liveUsers.appendChild(user);
