@@ -55789,11 +55789,11 @@ channel.bind('share-event', function (data) {
 
 window.Echo.join('online').here(function (users) {
   // get html elements
-  var liveUsers = document.querySelector("#online"); // create new para element
-
-  var user = document.createElement("P");
+  var liveUsers = document.querySelector("#online");
   users.forEach(function (u) {
-    // add the user name to the online list
+    // create new para element
+    var user = document.createElement("P"); // add the user name to the online list
+
     user.appendChild(document.createTextNode(u.name));
     liveUsers.appendChild(user);
   });
