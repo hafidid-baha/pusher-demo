@@ -55740,7 +55740,7 @@ var app = new Vue({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -55771,7 +55771,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "0044fdcd239c456f2b86",
   cluster: "eu" // forceTLS: true
@@ -55785,7 +55785,23 @@ var pusher = new Pusher("0044fdcd239c456f2b86", {
 var channel = pusher.subscribe('main-channel');
 channel.bind('share-event', function (data) {
   alert(JSON.stringify(data));
-});
+}); // listen to online channel
+
+window.Echo.join('online').here(function (users) {
+  // get html elements
+  var liveUsers = document.querySelector("#online"); // create new para element
+
+  var user = document.createElement("P");
+  users.forEach(function (u) {
+    // add the user name to the online list
+    user.appendChild(document.createTextNode(u.name));
+    liveUsers.appendChild(user);
+  });
+}).joining(function (user) {
+  return console.log("joined " + user);
+}).leaving(function (user) {
+  return console.log("leaving " + user);
+}); // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))
 
 /***/ }),
 
