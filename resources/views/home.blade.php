@@ -39,8 +39,7 @@
                     @endif
 
                     <div id="online">
-                        <p class="">Hafid</p>
-                        <p class="">َAhmed</p>
+                        
                     </div>
                 </div>
             </div>
