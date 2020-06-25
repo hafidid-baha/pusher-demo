@@ -53,9 +53,21 @@ channel.bind('share-event', function(data) {
     alert(JSON.stringify(data));
 });
 
+
 // listen to online channel
 window.Echo.join('online')
-            .here(users => console.log(users))
+            .here(users => {
+                // get html elements
+                var liveUsers = document.querySelector("#online");
+                // create new para element
+                var user = document.createElement("P");
+                
+                users.forEach(u => {
+                    // add the user name to the online list
+                    user.appendChild(document.createTextNode(u.name));
+                    liveUsers.appendChild(user);
+                });
+            })
             .joining(user => console.log("joined "+user))
             .leaving(user => console.log("leaving "+user))
             // .leaving(user => (this.users = this.users.filter(u => (u.id !== user.id))))
