@@ -32,7 +32,7 @@ class shareEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('main-channel');
+        return new PrivateChannel('main-channel');
     }
 
     public function broadcastAs(){
